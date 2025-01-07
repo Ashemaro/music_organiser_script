@@ -1,6 +1,6 @@
-# Music Organizer Script
+# Harmoni - Music Organizer
 
-This Python script organizes your music files into folders based on their album names and deletes duplicate files. It supports multiple audio formats, including MP3, FLAC, WAV, and more, using the `mutagen` library to read metadata. The script also ensures that folder names are valid for Windows by sanitizing invalid characters.
+Harmoni is a Python script that organizes your music files into folders based on their album names and deletes duplicate files. It supports multiple audio formats (MP3, FLAC, WAV, etc.) and provides a user-friendly GUI for selecting directories and tracking progress. The script also includes a colorful terminal output and an ASCII art banner for a visually appealing experience.
 
 ---
 
@@ -9,43 +9,46 @@ This Python script organizes your music files into folders based on their album 
 - **Organizes Music by Album**: Moves music files into folders named after their album.
 - **Deletes Duplicates**: Detects and removes duplicate files in the same album folder.
 - **Supports Multiple Formats**: Works with MP3, FLAC, WAV, and other formats supported by `mutagen`.
-- **Sanitizes Folder Names**: Replaces invalid characters in album names to ensure compatibility with Windows file systems.
+- **Graphical User Interface (GUI)**: Allows users to manually select a directory using a file dialog.
+- **Progress Bar**: Shows the progress of file organization in real-time.
+- **Status Updates**: Provides real-time updates in the GUI (e.g., "Processed 5/10 files").
+- **Colored Terminal Output**: Uses `colorama` for better readability of success, warning, and error messages.
+- **ASCII Art Banner**: Displays a stylish "Harmoni" banner when the script starts.
 
 ---
 
 ## Prerequisites
 
 1. **Python 3.x**: Ensure Python is installed on your system.
-2. **Mutagen Library**: Install the `mutagen` library to read metadata from audio files.
+2. **External Libraries**: Install the required libraries using the `requirements.txt` file.
+
+---
+
+## Installation
+
+1. Clone or download the repository.
+2. Navigate to the project directory.
+3. Install the dependencies using `pip`:
 
    ```bash
-   pip install mutagen
+   pip install -r requirements.txt
    ```
 
 ---
 
 ## Usage
 
-1. **Place the Script in Your Music Directory**:
-   - Save the script (`music_organizer.py`) in the directory containing your music files.
+1. **Run the Script**:
+   - Save the script as `harmoni_music_organizer.py` and run it:
+     ```bash
+     python harmoni_music_organizer.py
+     ```
 
-2. **Update the Music Directory Path**:
-   - Open the script in a text editor and update the `music_directory` variable with the path to your music folder.
+2. **Choose Directory**:
+   - Click the "Choose Directory" button in the GUI and select the folder containing your music files.
 
-   ```python
-   music_directory = r"C:\Users\user\Music"
-   ```
-
-3. **Run the Script**:
-   - Open a terminal or command prompt, navigate to the directory where the script is located, and run the script.
-
-   ```bash
-   python music_organizer.py
-   ```
-
-4. **Check the Output**:
-   - The script will create folders named after the albums and move the corresponding music files into them.
-   - Duplicate files will be deleted.
+3. **Wait for Completion**:
+   - The script will organize the files into folders based on their album names and display progress in the GUI.
 
 ---
 
@@ -80,38 +83,54 @@ C:\Users\user\Music\
 
 ---
 
-## Notes
+## Screenshots
 
-- **Backup Your Files**: Always back up your music files before running the script to avoid accidental data loss.
-- **Invalid Characters**: The script replaces invalid characters (`<>:"/\\|?*`) in album names with underscores (`_`).
-- **Unsupported Formats**: If a file format is not supported by `mutagen`, the script will skip it and print an error message.
+### ASCII Art Banner:
+```
+  _    _                   _ 
+ | |  | |                 (_)
+ | |__| | __ _ _ __  _ __  _ 
+ |  __  |/ _` | '_ \| '_ \| |
+ | |  | | (_| | | | | | | | |
+ |_|  |_|\__,_|_| |_|_| |_|_|
+```
+
+### GUI:
+- A simple window with a "Choose Directory" button, a progress bar, and a status label.
 
 ---
 
 ## Troubleshooting
 
-1. **Error: `NotADirectoryError`**:
+1. **Error: `No directory selected!`**:
+   - Ensure you select a valid directory using the file dialog.
+
+2. **Error: `Unsupported file format`**:
+   - The script skips unsupported file formats. Ensure your files are in a supported format (MP3, FLAC, WAV, etc.).
+
+3. **Error: `mutagen` or `colorama` not installed**:
+   - Install the required libraries using `pip install -r requirements.txt`.
+
+4. **Error: `NotADirectoryError`**:
    - Ensure the album names do not contain invalid characters. The script sanitizes these, but if the issue persists, check for other edge cases (e.g., extremely long folder names).
-
-2. **Error: `FileNotFoundError`**:
-   - Double-check the `music_directory` path to ensure it points to the correct folder.
-
-3. **Error: `mutagen` Not Installed**:
-   - Install the `mutagen` library using `pip install mutagen`.
-
-4. **Unsupported File Format**:
-   - If a file format is not supported, the script will skip it and print an error message. Ensure your files are in a supported format.
 
 ---
 
 ## License
 
-This script is provided under the [MIT License](https://opensource.org/licenses/MIT). Feel free to modify and distribute it as needed.
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). Feel free to modify and distribute it as needed.
 
 ---
 
 ## Author
 
-[Kudakwashe Marongedza](https://github.com/ashemaro)
+[Kudakwashe Marongedza](https://github.com/ashemaro)  
+**Harmoni - Music Organizer**
+
+---
+
+## Contributing
+
+Contributions are welcome! If you'd like to improve the script, feel free to open an issue or submit a pull request.
 
 ---
