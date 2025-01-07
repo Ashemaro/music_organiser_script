@@ -1,8 +1,11 @@
 import os
 import shutil
 import re
+from mutagen import File
 from mutagen.easyid3 import EasyID3
+from mutagen.flac import FLAC
 from mutagen.mp3 import MP3
+from mutagen.wave import WAVE
 
 def sanitize_folder_name(name):
     # Replace invalid characters with an underscore or remove them
@@ -11,8 +14,23 @@ def sanitize_folder_name(name):
 
 def get_album_name(file_path):
     try:
-        audio = MP3(file_path, ID3=EasyID3)
-        return audio.get('album', ['Unknown Album'])[0]
+        # Use mutagen.File to handle multiple formats
+        audio = File(file_path, easy=True)
+
+        if audio is None:
+            print(f"Unsupported file format: {file_path}")
+            return 'Unknown Album'
+
+        # Extract album name based on file type
+        if isinstance(audio, MP3) or isinstance(audio, EasyID3):
+            return audio.get('album', ['Unknown Album'])[0]
+        elif isinstance(audio, FLAC):
+            return audio.get('album', ['Unknown Album'])[0]
+        elif isinstance(audio, WAVE):
+            return audio.get('album', ['Unknown Album'])[0]
+        else:
+            # Fallback for other formats
+            return audio.tags.get('album', ['Unknown Album'])[0]
     except Exception as e:
         print(f"Error reading metadata from {file_path}: {e}")
         return 'Unknown Album'
